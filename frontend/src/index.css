@@ -12,7 +12,37 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #020617; }
 ::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 3px; }
+
+/* --- Dot Grid Background --- */
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
+
+.dot-cell {
+  position: relative;
+}
+
+.dot-cell::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #3B82F6; /* Matches your blue accent */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2; /* Subtle when not hovered */
+  transition: 0.2s ease;
+}
+
+/* Hover effect */
+.dot-cell:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.5);
+}
