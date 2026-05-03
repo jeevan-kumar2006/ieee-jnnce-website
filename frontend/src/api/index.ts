@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Event, ContactData } from '../types';
+import { Event } from '../types';
 
 const API_BASE = 'http://127.0.0.1:5000';
 
@@ -8,7 +8,24 @@ export const fetchEvents = async () => {
   return data;
 };
 
-export const submitContact = async (payload: ContactData) => {
-  const { data } = await axios.post(`${API_BASE}/contact`, payload);
+export const submitApplication = async (payload: any) => {
+  const { data } = await axios.post(`${API_BASE}/apply`, payload);
+  return data;
+};
+
+export const adminLogin = async (password: string) => {
+  const { data } = await axios.post(`${API_BASE}/admin/login`, { password });
+  return data;
+};
+
+export const fetchApplications = async () => {
+  const { data } = await axios.get(`${API_BASE}/admin/applications`);
+  return data;
+};
+
+export const addEvent = async (formData: FormData) => {
+  const { data } = await axios.post(`${API_BASE}/admin/events`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
   return data;
 };
