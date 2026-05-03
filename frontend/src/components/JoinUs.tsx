@@ -6,15 +6,23 @@ export default function JoinUs() {
   const [form, setForm] = useState({ name: '', email: '', dept: '', year: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await submitApplication(form);
-    setLoading(false);
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 3000);
-    setForm({ name: '', email: '', dept: '', year: '', message: '' });
+    setError(''); // Reset error
+    
+    try {
+      await submitApplication(form);
+      setSuccess(true);
+      setForm({ name: '', email: '', dept: '', year: '', message: '' });
+      setTimeout(() => setSuccess(false), 3000);
+    } catch (err) {
+      setError("Failed to submit. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,6 +40,8 @@ export default function JoinUs() {
       </AnimatePresence>
 
       <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm pointer-events-auto">
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        
         <div className="grid md:grid-cols-2 gap-6">
           <input type="text" placeholder="Full Name" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
             className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" />
