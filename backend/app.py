@@ -12,8 +12,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # SECURITY: The plain text password is NEVER in the code.
-# This is the PBKDF2 SHA256 hash of "IEEECSESB@10"
-ADMIN_PASSWORD_HASH = generate_password_hash("IEEECSESB@10", method='pbkdf2:sha256')
+# This generates the hash of "IEEECSESB@10" securely on startup.
+ADMIN_PASSWORD_HASH = generate_password_hash("IEEECSESB@10")
 
 applications_db = []
 
