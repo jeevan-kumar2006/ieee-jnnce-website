@@ -7,41 +7,49 @@ html {
 }
 
 body {
-  background-color: #020617;
-  color: white;
+  background-color: #ffffff;
+  color: #111827;
   font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+}
+
+.content-layer {
+  pointer-events: none;
+}
+
+.content-layer a, 
+.content-layer button, 
+.content-layer input, 
+.content-layer textarea, 
+.content-layer select,
+.content-layer [role="button"] {
+  pointer-events: auto;
 }
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #020617; }
+::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 3px; }
 
-/* --- Dot Grid Background --- */
 .dot-grid {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
 }
 
-.dot-cell {
-  position: relative;
-}
+.dot-cell { position: relative; }
 
 .dot-cell::before {
   content: "";
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #3B82F6; /* Matches your blue accent */
+  width: 4px; height: 4px;
+  background: #a9c9ff;
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.2; /* Subtle when not hovered */
+  opacity: 0.4;
   transition: 0.2s ease;
 }
 
-/* Hover effect */
 .dot-cell:hover::before {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.5);
