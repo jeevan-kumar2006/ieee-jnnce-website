@@ -29,28 +29,3 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #ffffff; }
 ::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 3px; }
-
-.dot-grid {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-}
-
-.dot-cell { position: relative; }
-
-.dot-cell::before {
-  content: "";
-  position: absolute;
-  width: 4px; height: 4px;
-  background: #a9c9ff;
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-  transition: 0.2s ease;
-}
-
-.dot-cell:hover::before {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.5);
-}
