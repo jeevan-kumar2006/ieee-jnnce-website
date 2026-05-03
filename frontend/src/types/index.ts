@@ -4,10 +4,5 @@ export interface Event {
   date: string;
   desc: string;
   tag: string;
-}
-
-export interface ContactData {
-  name: string;
-  email: string;
-  message: string;
+  brochure: string | null;
 }
